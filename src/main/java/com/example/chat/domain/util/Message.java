@@ -41,4 +41,21 @@ public class Message{
         return Objects.hash(message_id, text, author, room_id);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Message message = (Message) o;
+        return Objects.equals(message_id, message.message_id) && Objects.equals(text, message.text) && Objects.equals(author, message.author) && Objects.equals(room_id, message.room_id);
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "message_id=" + message_id +
+                ", text='" + text + '\'' +
+                ", author=" + author +
+                ", room_id=" + room_id +
+                '}';
+    }
 }
