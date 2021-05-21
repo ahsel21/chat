@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 
+@Table(name = "User")
 @Entity
 @Getter
 @Setter
@@ -30,8 +31,8 @@ public class User {
     @Column(name = "PASSWORD")
     private String password;
 
-    @ManyToMany(mappedBy = "ROOMS")
-    private List<Room> rooms=new ArrayList<>();
+//    @ManyToMany(mappedBy = "ROOMS")
+//    private List<Room> rooms=new ArrayList<>();
 
     @Override
     public int hashCode() {

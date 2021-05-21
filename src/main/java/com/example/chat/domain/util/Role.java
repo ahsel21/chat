@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Entity
+@Table(name = "Role")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -64,8 +65,8 @@ public class Role {
     @Column(name = "SET_MODERATORS", nullable = false)
     private Boolean set_moderators = false;
 
-    @ManyToMany(mappedBy = "USERS")
-    private List<User> users=new ArrayList<>();
+//    @ManyToMany(mappedBy = "USERS")
+//    private List<User> users=new ArrayList<>();
 
 
     @Override

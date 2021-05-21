@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Table(name = "Room")
 @Entity
 @Getter
 @Setter
@@ -39,25 +40,25 @@ public class Room {
     private User owner_id;
 
 
-    @ManyToMany (cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "CHAT_USERS",
-            joinColumns = @JoinColumn(name = "ROOM_ID"),
-            inverseJoinColumns = @JoinColumn(name = "USER_ID")
-    )
-    private List<User> users=new ArrayList<>();
-
-    @ManyToMany (cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "CHAT_USERS",
-            joinColumns = @JoinColumn(name = "USER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
-    )
-    private List<Role> roles=new ArrayList<>();
+//    @ManyToMany (cascade = {
+//            CascadeType.PERSIST,
+//            CascadeType.MERGE
+//    })
+//    @JoinTable(name = "CHAT_USERS",
+//            joinColumns = @JoinColumn(name = "ROOM_ID"),
+//            inverseJoinColumns = @JoinColumn(name = "USER_ID")
+//    )
+//    private List<User> users=new ArrayList<>();
+//
+//    @ManyToMany (cascade = {
+//            CascadeType.PERSIST,
+//            CascadeType.MERGE
+//    })
+//    @JoinTable(name = "CHAT_USERS",
+//            joinColumns = @JoinColumn(name = "USER_ID"),
+//            inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
+//    )
+//    private List<Role> roles=new ArrayList<>();
 
     @Override
     public int hashCode() {

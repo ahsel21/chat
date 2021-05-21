@@ -11,7 +11,8 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 
-@Entity(name = "planner_Message")
+@Entity(name = "Chat")
+@Table(name = "Message")
 @Getter
 @Setter
 @AllArgsConstructor
