@@ -16,7 +16,7 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Message{
+public class Message {
 
     @Id
     @NotNull
@@ -28,17 +28,22 @@ public class Message{
     @Column(name = "TEXT", nullable = false, length = 2048)
     private String text;
 
-    @NotNull
-    @Column(name = "AUTHOR", nullable = false)
-    private Integer author;
 
+
+    @JoinColumn(name = "USER_ID")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @NotNull
-    @Column(name = "ROOM_ID", nullable = false)
-    private Integer room_id;
+    private User author;
+
+
+    @JoinColumn(name = "ROOM_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
+    private Room room;
 
     @Override
     public int hashCode() {
-        return Objects.hash(message_id, text, author, room_id);
+        return Objects.hash(message_id, text, author, room);
     }
 
     @Override
@@ -46,7 +51,7 @@ public class Message{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Message message = (Message) o;
-        return Objects.equals(message_id, message.message_id) && Objects.equals(text, message.text) && Objects.equals(author, message.author) && Objects.equals(room_id, message.room_id);
+        return Objects.equals(message_id, message.message_id) && Objects.equals(text, message.text) && Objects.equals(author, message.author) && Objects.equals(room, message.room);
     }
 
     @Override
@@ -55,7 +60,7 @@ public class Message{
                 "message_id=" + message_id +
                 ", text='" + text + '\'' +
                 ", author=" + author +
-                ", room_id=" + room_id +
+                ", room_id=" + room +
                 '}';
     }
 }

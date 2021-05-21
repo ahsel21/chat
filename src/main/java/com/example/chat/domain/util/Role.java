@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Getter
@@ -16,6 +16,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Role {
+
 
     @Id
     @NotNull
@@ -62,6 +63,9 @@ public class Role {
     @NotNull
     @Column(name = "SET_MODERATORS", nullable = false)
     private Boolean set_moderators = false;
+
+    @ManyToMany(mappedBy = "USERS")
+    private List<User> users=new ArrayList<>();
 
 
     @Override

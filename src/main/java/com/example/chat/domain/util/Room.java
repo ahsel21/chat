@@ -9,6 +9,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,7 +19,6 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Room {
-    //TODO Сделать сущность чата
     @Id
     @NotNull
     @Column(name = "ROOM_ID", nullable = false, unique = true)
@@ -33,8 +34,30 @@ public class Room {
     private Boolean public_access;
 
     @NotNull
-    @Column(name = "OWNER_ID")
-    private Integer owner_id;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "OWNER_ID")
+    private User owner_id;
+
+
+    @ManyToMany (cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "CHAT_USERS",
+            joinColumns = @JoinColumn(name = "ROOM_ID"),
+            inverseJoinColumns = @JoinColumn(name = "USER_ID")
+    )
+    private List<User> users=new ArrayList<>();
+
+    @ManyToMany (cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "CHAT_USERS",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
+    )
+    private List<Role> roles=new ArrayList<>();
 
     @Override
     public int hashCode() {

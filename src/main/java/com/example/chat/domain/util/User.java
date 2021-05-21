@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Getter
@@ -29,6 +29,9 @@ public class User {
 
     @Column(name = "PASSWORD")
     private String password;
+
+    @ManyToMany(mappedBy = "ROOMS")
+    private List<Room> rooms=new ArrayList<>();
 
     @Override
     public int hashCode() {
