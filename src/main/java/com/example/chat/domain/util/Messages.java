@@ -11,22 +11,22 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 
-@Entity(name = "Chat")
-@Table(name = "Message")
+@Entity
+@Table(name = "Messages")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Message {
+public class Messages {
 
     @Id
     @NotNull
-    @Column(name = "MESSAGE_ID", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MESSAGE_ID", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer message_id;
 
     @NotBlank
-    @Column(name = "TEXT", nullable = false, length = 2048)
+    @Column(name = "TEXT", length = 2048)
     private String text;
 
 
@@ -34,25 +34,25 @@ public class Message {
     @JoinColumn(name = "USER_ID")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @NotNull
-    private User author;
+    private Users author;
 
 
     @JoinColumn(name = "ROOM_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
-    private Room room;
+    private Rooms rooms;
 
     @Override
     public int hashCode() {
-        return Objects.hash(message_id, text, author, room);
+        return Objects.hash(message_id, text, author, rooms);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Message message = (Message) o;
-        return Objects.equals(message_id, message.message_id) && Objects.equals(text, message.text) && Objects.equals(author, message.author) && Objects.equals(room, message.room);
+        Messages messages = (Messages) o;
+        return Objects.equals(message_id, messages.message_id) && Objects.equals(text, messages.text) && Objects.equals(author, messages.author) && Objects.equals(rooms, messages.rooms);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Message {
                 "message_id=" + message_id +
                 ", text='" + text + '\'' +
                 ", author=" + author +
-                ", room_id=" + room +
+                ", room_id=" + rooms +
                 '}';
     }
 }

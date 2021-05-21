@@ -11,26 +11,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Entity
-@Table(name = "Role")
+@Table(name = "Roles")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Role {
+public class Roles {
 
 
     @Id
     @NotNull
-    @Column(name = "ROLE_ID", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ROLE_ID", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer role_id;
 
     @NotBlank
-    @Column(name = "NAME", nullable = false, unique = true)
+    @Column(name = "NAME", unique = true)
     private String name;
 
     @NotNull
-    @Column(name = "SEND_MESSAGE", nullable = false)
+    @Column(name = "SEND_MESSAGE")
     private Boolean send_message = false;
 
     @NotNull
@@ -71,7 +71,7 @@ public class Role {
 
     @Override
     public String toString() {
-        return "Role{" +
+        return "Roles{" +
                 "role_id=" + role_id +
                 ", name='" + name + '\'' +
                 ", send_message=" + send_message +
@@ -90,8 +90,8 @@ public class Role {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Role role = (Role) o;
-        return Objects.equals(role_id, role.role_id) && Objects.equals(name, role.name) && Objects.equals(send_message, role.send_message) && Objects.equals(recive_message, role.recive_message) && Objects.equals(delete_message, role.delete_message) && Objects.equals(create_rooms, role.create_rooms) && Objects.equals(add_users, role.add_users) && Objects.equals(delete_users, role.delete_users) && Objects.equals(rename_rooms, role.rename_rooms) && Objects.equals(ban_users, role.ban_users) && Objects.equals(set_moderators, role.set_moderators);
+        Roles roles = (Roles) o;
+        return Objects.equals(role_id, roles.role_id) && Objects.equals(name, roles.name) && Objects.equals(send_message, roles.send_message) && Objects.equals(recive_message, roles.recive_message) && Objects.equals(delete_message, roles.delete_message) && Objects.equals(create_rooms, roles.create_rooms) && Objects.equals(add_users, roles.add_users) && Objects.equals(delete_users, roles.delete_users) && Objects.equals(rename_rooms, roles.rename_rooms) && Objects.equals(ban_users, roles.ban_users) && Objects.equals(set_moderators, roles.set_moderators);
     }
 
     @Override

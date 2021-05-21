@@ -10,18 +10,18 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 
-@Table(name = "User")
+@Table(name = "Users")
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Users {
 
     @Id
     @NotNull
     @Column(name = "USER_ID", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer user_id;
 
     @NotBlank
@@ -32,7 +32,7 @@ public class User {
     private String password;
 
 //    @ManyToMany(mappedBy = "ROOMS")
-//    private List<Room> rooms=new ArrayList<>();
+//    private List<Rooms> rooms=new ArrayList<>();
 
     @Override
     public int hashCode() {
@@ -42,8 +42,8 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
+        if (!(o instanceof Users)) return false;
+        Users user = (Users) o;
         return Objects.equals(user_id, user.user_id) &&
                 Objects.equals(login, user.login) &&
                 Objects.equals(password, user.password);
