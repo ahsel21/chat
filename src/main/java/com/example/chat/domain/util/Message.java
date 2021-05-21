@@ -22,7 +22,7 @@ public class Message {
     @Id
     @NotNull
     @Column(name = "MESSAGE_ID", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer message_id;
 
     @NotBlank

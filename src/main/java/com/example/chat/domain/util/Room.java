@@ -23,7 +23,7 @@ public class Room {
     @Id
     @NotNull
     @Column(name = "ROOM_ID", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer room_id;
 
     @NotBlank
