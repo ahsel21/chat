@@ -1,4 +1,4 @@
-package com.example.chat.domain.util;
+package com.example.chat.domain;
 
 
 import lombok.AllArgsConstructor;
@@ -18,6 +18,10 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Rooms {
+
+    //TODO сделать manyToMany
+
+
     @Id
     @NotNull
     @Column(name = "ROOM_ID", nullable = false, unique = true)
