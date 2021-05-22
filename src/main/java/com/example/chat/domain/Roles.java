@@ -30,7 +30,7 @@ public class Roles {
     private String name;
 
     @NotNull
-    @Column(name = "SEND_MESSAGE")
+    @Column(name = "SEND_MESSAGE", nullable = false)
     private Boolean send_message = false;
 
     @NotNull
