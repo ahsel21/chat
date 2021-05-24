@@ -65,6 +65,12 @@ public class Roles {
     @Column(name = "SET_MODERATORS", nullable = false)
     private Boolean set_moderators = false;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "chat_users",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+    private List<Users> users = new ArrayList<>();
+
 //    @ManyToMany(mappedBy = "USERS")
 //    private List<User> users=new ArrayList<>();
 

@@ -31,8 +31,17 @@ public class Users {
     @Column(name = "PASSWORD")
     private String password;
 
-//    @ManyToMany(mappedBy = "ROOMS")
-//    private List<Rooms> rooms=new ArrayList<>();
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "chat_users",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROOM_ID"))
+    private Set<Rooms> rooms = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "chat_users",
+            joinColumns = @JoinColumn(name = "ROLE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "USER_ID"))
+    private List<Roles> roles = new ArrayList<>();
 
     @Override
     public int hashCode() {

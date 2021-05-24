@@ -9,7 +9,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Table(name = "Rooms")
 @Entity
@@ -18,9 +20,6 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Rooms {
-
-    //TODO сделать manyToMany
-
 
     @Id
     @NotNull
@@ -41,26 +40,12 @@ public class Rooms {
     @JoinColumn(name = "OWNER_ID")
     private Users owner_id;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "chat_users",
+            joinColumns = @JoinColumn(name = "ROOM_ID"),
+            inverseJoinColumns = @JoinColumn(name = "USER_ID"))
+    private Set<Users> users = new HashSet<>();
 
-//    @ManyToMany (cascade = {
-//            CascadeType.PERSIST,
-//            CascadeType.MERGE
-//    })
-//    @JoinTable(name = "CHAT_USERS",
-//            joinColumns = @JoinColumn(name = "ROOM_ID"),
-//            inverseJoinColumns = @JoinColumn(name = "USER_ID")
-//    )
-//    private List<Users> users=new ArrayList<>();
-
-//    @ManyToMany (cascade = {
-//            CascadeType.PERSIST,
-//            CascadeType.MERGE
-//    })
-//    @JoinTable(name = "CHAT_USERS",
-//            joinColumns = @JoinColumn(name = "USER_ID"),
-//            inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
-//    )
-//    private List<Role> roles=new ArrayList<>();
 
     @Override
     public int hashCode() {
