@@ -18,7 +18,6 @@ import java.util.*;
 @NoArgsConstructor
 public class Roles {
 
-
     @Id
     @NotNull
     @Column(name = "ROLE_ID", unique = true)

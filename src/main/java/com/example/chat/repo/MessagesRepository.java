@@ -16,5 +16,4 @@ public interface MessagesRepository extends JpaRepository<Messages, Integer> {
 
     @Override
     void delete(Messages messages);
-
 }

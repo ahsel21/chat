@@ -5,9 +5,9 @@ import com.example.chat.domain.Roles;
 import java.util.List;
 
 public interface RolesService {
-    Roles addRoles(Roles user);
+    Roles addRoles(Roles roles);
     void delete(Integer id);
     Roles getByName(String name);
-    Roles editRoles(Roles room);
+    Roles editRoles(Roles roles);
     List<Roles> getAll();
 }

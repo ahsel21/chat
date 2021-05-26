@@ -5,9 +5,9 @@ import com.example.chat.domain.Rooms;
 import java.util.List;
 
 public interface RoomsService {
-    Rooms addRoom(Rooms user);
+    Rooms addRoom(Rooms rooms);
     void delete(Integer id);
     Rooms getByName(String name);
-    Rooms editRoom(Rooms room);
+    Rooms editRoom(Rooms rooms);
     List<Rooms> getAll();
 }
