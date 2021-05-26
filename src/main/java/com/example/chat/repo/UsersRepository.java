@@ -9,10 +9,9 @@ import java.util.List;
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Integer> {
 
-    Users findByLogin(String login);
-
-    List<Users> findAll();
-
+   Users findByLogin(String login);
+   //List<Users> getAll();
+    //List<Users> findAll();
     long count();
 
     @Override

@@ -1,21 +1,27 @@
 package com.example.chat.controller;
 
-import org.springframework.stereotype.Controller;
+import com.example.chat.domain.Roles;
+import com.example.chat.service.RolesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class MainController {
 
-
-    @GetMapping("/r")
-    public String main() {
-        return  "index";
+    private final RolesService rolesService;
+    @Autowired
+    public MainController(RolesService rolesService) {
+        this.rolesService = rolesService;
     }
 
-//    @GetMapping("/view/{name}")
-//    public String view(@PathVariable("name") String name, Model model) {
-//        model.addAttribute("msg", "Hello " + name + "!");
-//        return "/index";
-//    }
+
+    @GetMapping("/r")
+    public List<Roles> main() {
+        return rolesService.getAll();
+    }
+
+
 }

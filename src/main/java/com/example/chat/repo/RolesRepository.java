@@ -10,7 +10,7 @@ import java.util.List;
 @EnableJpaRepositories
 @Repository
 public interface RolesRepository extends JpaRepository<Roles, Integer> {
-    List<Roles> findAll();
+    //List<Roles> findAll();
     Roles findByName(String name);
 
 }

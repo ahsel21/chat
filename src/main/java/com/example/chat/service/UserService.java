@@ -9,5 +9,5 @@ public interface UserService {
     void delete(Integer id);
     Users getByLogin(String login);
     Users editUser(Users user);
-    List<Users> getAll();
+    List<Users> findAll();
 }
