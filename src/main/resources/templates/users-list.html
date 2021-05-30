@@ -11,13 +11,30 @@
         <h2>Users</h2>
         <table>
             <thead>
-            <tr>
-                <div th:each="el : ${users}" class="alert alert-info mt-2">
-                    <h3 th:text="'User id: ' + ${el.user_id} + '.  Login: ' +${el.login} + '.' "/>
-                </div>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.user_id}"></td>
+                <td th:text="${user.login}"></td>
+                <td th:text="${user.password}"></td>
+                <td><a th:href="@{users/update/{id}(id=${user.user_id})}">Edit</a></td>
+                <td><a th:href="@{users/delete/{id}(id=${user.user_id})}">Delete</a></td>
             </tr>
+<!--            <tr>-->
+<!--                <div th:each="el : ${users}" class="alert alert-info mt-2">-->
+<!--                    -->
+<!--&lt;!&ndash;                    <h3 th:text="'User id: ' + ${el.user_id} + '.  Login: ' +${el.login} + '.' "/>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;                    <td><a th:href="@{users-update/{user_id}(id=${users.user_id})}">Edit</a></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <td><a th:href="@{users/delete/{user_id}(id=${users.user_id})}">Delete</a></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p><a href="/user-create">Edit user</a></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p><a href="/users/delete">Delete user</a></p>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </tr>-->
             </thead>
         </table>
+    </div>
+    </div>
+    <p><a href="/users/create">Create user</a></p>
     </div>
 </div>
 </body>

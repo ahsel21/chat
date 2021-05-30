@@ -1,8 +1,6 @@
 package com.example.chat.service.impl;
 
-import com.example.chat.domain.Roles;
 import com.example.chat.domain.Users;
-import com.example.chat.repo.RolesRepository;
 import com.example.chat.repo.UsersRepository;
 import com.example.chat.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -26,14 +25,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
         usersRepository.deleteById(id);
     }
 
     @Override
-    public Users getByLogin(String login) {
+    public Users findByLogin(String login) {
         return usersRepository.findByLogin(login);
     }
+
+    @Override
+    public Optional<Users> findById(Integer id) {
+        return usersRepository.findById(id);
+    }
+
 
     @Override
     public Users editUser(Users user) {
@@ -44,4 +49,10 @@ public class UserServiceImpl implements UserService {
     public List<Users> findAll() {
         return usersRepository.findAll();
     }
+
+    @Override
+    public void save(Users user) {
+        usersRepository.save(user);
+    }
+
 }
