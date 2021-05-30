@@ -13,10 +13,10 @@
             <thead>
                 <tr>
                     <div th:each="el : ${roles}" class="alert alert-info mt-2">
-                        <h3 th:text="'Role id: ' + ${el.role_id} + '|  Name: ' +${el.name} + '| Add users: ' +${el.add_users}
-                         + '| Bun_users' +${el.bun_users} + '| Create_rooms' +${el.create_rooms} + '| Delete_message ' +${el.delete_message}
-                         + '| Delete_users ' +${el.delete_users} + '| Recive_message ' +${el.recive_message} + '| Rename_rooms' +${el.rename_rooms}
-                          + '| Send_message ' +${el.send_message} + '| Set_moderators ' +${el.set_moderators}"/>
+                        <h3 th:text="'Role id: ' + ${el.role_id} + ';  Name: ' +${el.name} + '; Add users: ' +${el.add_users}
+                         + ' - ' +${el.ban_users} + ' - ' +${el.create_rooms} + ' - ' +${el.delete_message}
+                         + ' - ' +${el.delete_users} + ' - ' +${el.recive_message} + ' - ' +${el.rename_rooms}
+                          + ' - ' +${el.send_message} + ' - ' +${el.set_moderators}"/>
                     </div>
                 </tr>
             </thead>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<div th:switch="${users}">
+    <h2 th:case="null">No found!</h2>
+    <div th:case="*">
+        <h2>Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <div th:each="el : ${users}" class="alert alert-info mt-2">
+                    <h3 th:text="'User id: ' + ${el.user_id} + '.  Login: ' +${el.login} + '.' "/>
+                </div>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+</body>
+</html>
