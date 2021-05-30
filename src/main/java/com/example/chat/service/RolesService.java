@@ -9,5 +9,6 @@ public interface RolesService {
     void delete(Integer id);
     Roles getByName(String name);
     Roles editRoles(Roles roles);
-    List<Roles> getAll();
+
+    List<Roles> findAll();
 }

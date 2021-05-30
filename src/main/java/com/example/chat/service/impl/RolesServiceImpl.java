@@ -16,32 +16,37 @@ import java.util.List;
 public class RolesServiceImpl implements RolesService {
 
 
-    @Autowired
+
     private RolesRepository rolesRepository;
 
+    @Autowired
+    public RolesServiceImpl(RolesRepository rolesRepository) {
+        this.rolesRepository = rolesRepository;
+    }
+
     @Override
-    public Roles addRoles(Roles user) {
-        return null;
+    public Roles addRoles(Roles roles) {
+        return  rolesRepository.save(roles);
     }
 
     @Override
     public void delete(Integer id) {
+        rolesRepository.deleteById(id);
 
     }
 
     @Override
     public Roles getByName(String name) {
-        return null;
+        return  rolesRepository.findByName(name);
     }
 
     @Override
-    public Roles editRoles(Roles room) {
-        return null;
+    public Roles editRoles(Roles roles) {
+        return  rolesRepository.save(roles);
     }
 
     @Override
-    public List<Roles> getAll() {
+    public List<Roles> findAll() {
         return rolesRepository.findAll();
-        //return null;
     }
 }

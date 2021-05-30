@@ -10,8 +10,6 @@ import java.util.List;
 public interface UsersRepository extends JpaRepository<Users, Integer> {
 
    Users findByLogin(String login);
-   //List<Users> getAll();
-    //List<Users> findAll();
     long count();
 
     @Override

@@ -3,6 +3,7 @@ package com.example.chat.service.impl;
 import com.example.chat.domain.Roles;
 import com.example.chat.domain.Users;
 import com.example.chat.repo.RolesRepository;
+import com.example.chat.repo.UsersRepository;
 import com.example.chat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserService userService;
+    private UsersRepository usersRepository;
 
 
     @Override
@@ -36,12 +37,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users editUser(Users user) {
-        return null;
+        return  usersRepository.save(user);
     }
 
     @Override
     public List<Users> findAll() {
-        return userService.findAll();
-        //return null;
+        return usersRepository.findAll();
     }
 }
