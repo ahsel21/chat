@@ -22,17 +22,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users addUser(Users user) {
-        return null;
+        return usersRepository.save(user);
     }
 
     @Override
     public void delete(Integer id) {
-
+        usersRepository.deleteById(id);
     }
 
     @Override
     public Users getByLogin(String login) {
-        return null;
+        return usersRepository.findByLogin(login);
     }
 
     @Override

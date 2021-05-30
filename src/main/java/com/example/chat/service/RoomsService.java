@@ -9,5 +9,5 @@ public interface RoomsService {
     void delete(Integer id);
     Rooms getByName(String name);
     Rooms editRoom(Rooms rooms);
-    List<Rooms> getAll();
+    List<Rooms> findAll();
 }
