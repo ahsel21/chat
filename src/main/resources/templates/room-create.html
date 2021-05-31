@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Create room</title>
+</head>
+<body>
+<h2>Create room</h2>
+<form action="#" th:action="@{/rooms/create}" th:object="${rooms}" method="post">
+  <label for="name">Name</label>
+  <input type="text" th:field="*{name}" id="name" placeholder="Name">
+
+  <label for="public_access">Public access</label>
+  <input type="checkbox" th:field="*{public_access}" id="public_access" placeholder="Public access">
+
+  <label for="owner_id">Owner id</label>
+  <input type="number" th:field="*{owner_id.user_id}" id="owner_id" placeholder="Owner id">
+
+  <input type="submit" value="Create room">
+</form>
+</body>
+</html>

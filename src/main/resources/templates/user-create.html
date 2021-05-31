@@ -5,12 +5,13 @@
   <title>Create user</title>
 </head>
 <body>
+<h2>Create user</h2>
 <form action="#" th:action="@{/users/create}" th:object="${users}" method="post">
   <label for="login">Login</label>
   <input type="text" th:field="*{login}" id="login" placeholder="Login">
   <label for="password">Password</label>
   <input type="text" th:field="*{password}" id="password" placeholder="Password">
-  <input type="submit" value="Create User">
+  <input type="submit" value="Create user">
 </form>
 </body>
 </html>

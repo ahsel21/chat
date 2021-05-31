@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <title>Messages</title>
+    <meta charset="UTF-8">
+    <title>Messages</title>
 </head>
 <body>
 <div th:switch="${messages}">
-  <h2 th:case="null">No found!</h2>
-  <div th:case="*">
-    <h2>Messages</h2>
-    <table>
-      <thead>
-      <tr>
-        <div th:each="el : ${messages}" class="alert alert-info mt-2">
-          <h3 th:text="'Message id: ' + ${el.message_id} + '.  Text: ' +${el.text} + '.' "/>
-        </div>
-      </tr>
-      </thead>
-    </table>
-  </div>
+    <h2 th:case="null">No found!</h2>
+    <div th:case="*">
+        <h2>Messages</h2>
+        <table>
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>|Text</td>
+                <td>|Author</td>
+                <td>|Room</td>
+            </tr>
+            <tr th:each="el : ${messages}" class="alert alert-info mt-2">
+                <td th:text="${el.message_id}"></td>
+                <td th:text="${el.text}"></td>
+                <td th:text="${el.author.user_id}"></td>
+                <td th:text="${el.rooms.room_id}"></td>
+                <td><a th:href="@{messages/update/{id}(id=${el.message_id})}">Edit</a></td>
+                <td><a th:href="@{messages/delete/{id}(id=${el.message_id})}">Delete</a></td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<p><a href="/messages/create">Create message</a></p>
+</div>
 </div>
 </body>
 </html>

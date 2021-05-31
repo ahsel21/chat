@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <meta charset="UTF-8">
-<title>Update user</title>
+<title>Edit user</title>
 </head>
 <body>
+<h2>Edit user</h2>
 <form action="#" th:action="@{/users/update}" th:object="${user}" method="post">
   <label for="user_id">ID</label>
   <input readonly type="number" th:field="*{user_id}" id="user_id" placeholder="ID">
-  <br/>
   <label for="login">First name</label>
   <input type="text" th:field="*{login}" id="login" placeholder="login">
-  <br/>
   <label for="password">Last name</label>
   <input type="text" th:field="*{password}" id="password" placeholder="password">
-  <br/>
   <input type="submit" value="Update User">
 </form>
 </body>

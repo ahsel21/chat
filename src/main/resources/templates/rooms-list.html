@@ -12,13 +12,25 @@
     <table>
       <thead>
       <tr>
-        <div th:each="el : ${rooms}" class="alert alert-info mt-2">
-          <h3 th:text="'Room id: ' + ${el.room_id} + '.  Name: ' +${el.name} + '.' "/>
-        </div>
+        <td>ID</td>
+        <td>|Name</td>
+        <td>|Public access</td>
+        <td>|Owner ID</td>
+      </tr>
+      <tr th:each="el : ${rooms}">
+        <td th:text="${el.room_id}"></td>
+        <td th:text="${el.name}"></td>
+        <td th:text="${el.public_access}"></td>
+        <td th:text="${el.owner_id.user_id}"></td>
+        <td><a th:href="@{rooms/update/{id}(id=${el.room_id})}">Edit</a></td>
+        <td><a th:href="@{rooms/delete/{id}(id=${el.room_id})}">Delete</a></td>
       </tr>
       </thead>
     </table>
   </div>
+</div>
+<p><a href="/rooms/create">Create room</a></p>
+</div>
 </div>
 </body>
 </html>

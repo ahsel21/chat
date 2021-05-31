@@ -11,13 +11,36 @@
         <h2>Roles</h2>
         <table>
             <thead>
+
+            </thead>
+            <thead>
                 <tr>
-                    <div th:each="el : ${roles}" class="alert alert-info mt-2">
-                        <h3 th:text="'Role id: ' + ${el.role_id} + ';  Name: ' +${el.name} + '; Add users: ' +${el.add_users}
-                         + ' - ' +${el.ban_users} + ' - ' +${el.create_rooms} + ' - ' +${el.delete_message}
-                         + ' - ' +${el.delete_users} + ' - ' +${el.recive_message} + ' - ' +${el.rename_rooms}
-                          + ' - ' +${el.send_message} + ' - ' +${el.set_moderators}"/>
-                    </div>
+                    <td>ID</td>
+                    <td>|Name</td>
+                    <td>|Add users</td>
+                    <td>|Ban users</td>
+                    <td>|Create rooms</td>
+                    <td>|Delete message</td>
+                    <td>|Delete users</td>
+                    <td>|Recive message</td>
+                    <td>|Rename room</td>
+                    <td>|Send message</td>
+                    <td>|Set moderator</td>
+                </tr>
+                <tr th:each="el : ${roles}" class="alert alert-info mt-2">
+                    <td th:text="${el.role_id}"></td>
+                    <td th:text="${el.name}"></td>
+                    <td th:text="${el.add_users}"></td>
+                    <td th:text="${el.ban_users}"></td>
+                    <td th:text="${el.create_rooms}"></td>
+                    <td th:text="${el.delete_message}"></td>
+                    <td th:text="${el.delete_users}"></td>
+                    <td th:text="${el.recive_message}"></td>
+                    <td th:text="${el.rename_rooms}"></td>
+                    <td th:text="${el.send_message}"></td>
+                    <td th:text="${el.set_moderators}"></td>
+<!--                    <td><a th:href="@{roles/update/{id}(id=${el.role_id})}">Edit</a></td>-->
+<!--                    <td><a th:href="@{roles/delete/{id}(id=${el.role_id})}">Delete</a></td>-->
                 </tr>
             </thead>
         </table>
