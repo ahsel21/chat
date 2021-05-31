@@ -2,13 +2,13 @@ package com.example.chat.service.impl;
 
 import com.example.chat.domain.Messages;
 import com.example.chat.repo.MessagesRepository;
-import com.example.chat.repo.RolesRepository;
 import com.example.chat.service.MessagesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,8 +22,8 @@ public class MessagesServiceImpl implements MessagesService {
     }
 
     @Override
-    public Messages addMessages(Messages messages) {
-        return messagesRepository.save(messages);
+    public void save(Messages messages) {
+        messagesRepository.save(messages);
     }
 
     @Override
@@ -37,7 +37,12 @@ public class MessagesServiceImpl implements MessagesService {
     }
 
     @Override
-    public List<Messages> getAll() {
+    public List<Messages> findAll() {
         return messagesRepository.findAll();
+    }
+
+    @Override
+    public Optional<Messages> findById(Integer id) {
+        return messagesRepository.findById(id);
     }
 }

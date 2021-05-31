@@ -1,7 +1,6 @@
 package com.example.chat.service.impl;
 
 import com.example.chat.domain.Rooms;
-import com.example.chat.repo.MessagesRepository;
 import com.example.chat.repo.RoomsRepository;
 import com.example.chat.service.RoomsService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,17 +22,22 @@ public class RoomsServiceImpl implements RoomsService {
     }
 
     @Override
-    public Rooms addRoom(Rooms room) {
-        return roomsRepository.save(room);
+    public void save(Rooms room) {
+        roomsRepository.save(room);
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
         roomsRepository.deleteById(id);
     }
 
     @Override
-    public Rooms getByName(String name) {
+    public Optional<Rooms> findById(Integer id) {
+        return roomsRepository.findById(id);
+    }
+
+    @Override
+    public Rooms findByName(String name) {
         return roomsRepository.findByName(name);
     }
 

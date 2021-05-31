@@ -18,12 +18,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UsersRepository usersRepository;
 
-
-    @Override
-    public Users addUser(Users user) {
-        return usersRepository.save(user);
-    }
-
     @Override
     public void deleteById(Integer id) {
         usersRepository.deleteById(id);

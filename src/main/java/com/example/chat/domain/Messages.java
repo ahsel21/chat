@@ -32,13 +32,13 @@ public class Messages {
 
 
     @JoinColumn(name = "USER_ID")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @NotNull
     private Users author;
 
 
     @JoinColumn(name = "ROOM_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @NotNull
     private Rooms rooms;
 
