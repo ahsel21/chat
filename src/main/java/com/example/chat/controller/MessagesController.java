@@ -14,7 +14,6 @@ import java.util.Optional;
 
 @Controller
 public class MessagesController {
-
     private final MessagesService messagesService;
 
     @Autowired
@@ -24,8 +23,9 @@ public class MessagesController {
 
     @GetMapping("/messages")
     public String main(Model model) {
-        List<Messages> messages = messagesService.getAll();
-        model.addAttribute("message", messages);
+        List<Messages> messages = messagesService.findAll();
+        model.addAttribute("messages", messages);
+        System.out.println(messages );
         return "messages-list";
     }
     @GetMapping("/messages/create")
@@ -33,29 +33,28 @@ public class MessagesController {
         return "message-create";
     }
 
-    @PostMapping("/message/create")
+    @PostMapping("/messages/create")
     public String create(Messages messages) {
-        messagesService.addMessages(messages);
+        messagesService.save(messages);
         return "redirect:/messages";
     }
 
     @GetMapping("/messages/delete/{id}")
     public String delete(@PathVariable("id") int id) {
         messagesService.delete(id);
-        System.out.println(id);
         return "redirect:/messages";
     }
 
     @GetMapping("/messages/update/{id}")
     public String updateMessageForm(@PathVariable("id") Integer id, Model model){
-        Optional<Messages> messages = Optional.ofNullable(messagesService.findById(id));
-        model.addAttribute("messages", messages);
+        Optional<Messages> messages = messagesService.findById(id);
+        model.addAttribute("message", messages);
         return "message-update";
     }
 
     @PostMapping("/messages/update")
     public String updateMessage(Messages message){
-        messagesService.addMessages(message);
+        messagesService.save(message);
         return "redirect:/messages";
     }
 }

@@ -3,7 +3,6 @@ package com.example.chat.controller;
 import com.example.chat.domain.Users;
 import com.example.chat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +15,7 @@ import java.util.Optional;
 @Controller
 public class UsersController {
     private final UserService userService;
+
     @Autowired
     public UsersController(UserService userService) {
         this.userService = userService;
@@ -42,7 +42,6 @@ public class UsersController {
     @GetMapping("/users/delete/{id}")
     public String delete(@PathVariable("id") int id) {
         userService.deleteById(id);
-        System.out.println(id);
         return "redirect:/users";
     }
 
