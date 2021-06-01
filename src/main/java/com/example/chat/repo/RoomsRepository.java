@@ -13,4 +13,5 @@ public interface RoomsRepository extends JpaRepository<Rooms, Integer> {
     List<Rooms> findAll();
     long count();
 
+
 }

@@ -1,14 +1,20 @@
 package com.example.chat.service.impl;
 
+import com.example.chat.domain.Roles;
 import com.example.chat.domain.Users;
+import com.example.chat.repo.RolesRepository;
 import com.example.chat.repo.UsersRepository;
 import com.example.chat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.*;
 
 
 @Service
@@ -17,6 +23,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UsersRepository usersRepository;
+
+    @Autowired
+    private RolesRepository rolesRepository;
+
 
     @Override
     public void deleteById(Integer id) {
@@ -48,5 +58,6 @@ public class UserServiceImpl implements UserService {
     public void save(Users user) {
         usersRepository.save(user);
     }
+
 
 }

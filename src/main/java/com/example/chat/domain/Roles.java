@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -16,7 +17,7 @@ import java.util.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Roles {
+public class Roles implements GrantedAuthority {
 
     @Id
     @NotNull
@@ -70,6 +71,12 @@ public class Roles {
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
     private List<Users> users = new ArrayList<>();
 
+//    public Roles(Integer role_id, String name) {
+//        this.role_id = role_id;
+//        this.name = name;
+//    }
+
+
 //    @ManyToMany(mappedBy = "USERS")
 //    private List<User> users=new ArrayList<>();
 
@@ -103,4 +110,10 @@ public class Roles {
     public int hashCode() {
         return Objects.hash(role_id, name, send_message, recive_message, delete_message, create_rooms, add_users, delete_users, rename_rooms, ban_users, set_moderators);
     }
+
+    @Override
+    public String getAuthority() {
+        return getName();
+    }
+
 }

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -16,7 +18,10 @@ import java.util.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Users {
+public class Users implements UserDetails {
+
+    public Users(String login, String password) {
+    }
 
     @Id
     @NotNull
@@ -31,6 +36,9 @@ public class Users {
     @Column(name = "PASSWORD")
     private String password;
 
+    @Transient
+    private String confirmPassword;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "chat_users",
             joinColumns = @JoinColumn(name = "USER_ID"),
@@ -41,7 +49,9 @@ public class Users {
     @JoinTable(name = "chat_users",
             joinColumns = @JoinColumn(name = "ROLE_ID"),
             inverseJoinColumns = @JoinColumn(name = "USER_ID"))
-    private List<Roles> roles = new ArrayList<>();
+    private Set<Roles> roles = new HashSet<>();
+
+
 
     @Override
     public int hashCode() {
@@ -66,4 +76,36 @@ public class Users {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRoles();
+    }
+
+    @Override
+    public String getUsername() {
+        return login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
 }
