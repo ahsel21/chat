@@ -7,18 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @Controller
 public class MainController {
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
-    @Autowired
-    private UserService userService;
+
 
 
     @GetMapping("/login")
@@ -34,11 +32,7 @@ public class MainController {
 
     @PostMapping("/registration")
     public String create(Users users) {
-        System.out.println(0);
-
         userDetailsService.save(users);
-
-        System.out.println(1);
         return "redirect:/login";
     }
 
