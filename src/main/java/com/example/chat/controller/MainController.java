@@ -18,6 +18,10 @@ public class MainController {
     private UserDetailsServiceImpl userDetailsService;
 
 
+    @GetMapping("/")
+    public String rooms() {
+        return "redirect:/rooms";
+    }
 
     @GetMapping("/login")
     public String main(Model model) {

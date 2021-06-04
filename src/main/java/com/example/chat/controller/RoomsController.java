@@ -1,7 +1,8 @@
 package com.example.chat.controller;
 
+import com.example.chat.domain.Messages;
 import com.example.chat.domain.Rooms;
-import com.example.chat.domain.Users;
+import com.example.chat.service.MessagesService;
 import com.example.chat.service.RoomsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,12 @@ import java.util.Optional;
 @Controller
 public class RoomsController {
 
+    private final MessagesService messagesService;
     private final RoomsService roomsService;
 
     @Autowired
-    public RoomsController(RoomsService roomsService) {
+    public RoomsController(MessagesService messagesService, RoomsService roomsService) {
+        this.messagesService = messagesService;
         this.roomsService = roomsService;
     }
 
@@ -58,6 +61,22 @@ public class RoomsController {
     public String updateUser(Rooms room) {
         roomsService.save(room);
         return "redirect:/rooms";
+    }
+
+    @GetMapping("/room/{room_id}")
+    public String getMessagesByRoom(@PathVariable("room_id") Integer room_id, Model model) {
+        List<Messages> messages = messagesService.findAll();
+        messages.removeIf(mes -> mes.getRooms().getRoom_id() != room_id);
+        model.addAttribute("messages", messages);
+        model.addAttribute("room_id", room_id);
+        System.out.println(room_id);
+        return "message-in-room";
+    }
+
+    @PostMapping("/room/{room_id}")
+    public String sendMessage(Messages messages) {
+        messagesService.save(messages);
+        return "redirect:/room/{room_id}";
     }
 
 }

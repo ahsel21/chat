@@ -36,7 +36,7 @@ public class MessagesController {
     @PostMapping("/messages/create")
     public String create(Messages messages) {
         messagesService.save(messages);
-        return "redirect:/messages";
+        return "redirect:/rooms";
     }
 
     @GetMapping("/messages/delete/{id}")
