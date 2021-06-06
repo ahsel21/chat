@@ -65,11 +65,11 @@ public class RoomsController {
 
     @GetMapping("/room/{room_id}")
     public String getMessagesByRoom(@PathVariable("room_id") Integer room_id, Model model) {
+        //todo убрать логику в слой сервисов!!!!
         List<Messages> messages = messagesService.findAll();
         messages.removeIf(mes -> mes.getRooms().getRoom_id() != room_id);
         model.addAttribute("messages", messages);
         model.addAttribute("room_id", room_id);
-        System.out.println(room_id);
         return "message-in-room";
     }
 

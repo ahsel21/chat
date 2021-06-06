@@ -16,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -39,6 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final RoomsService roomsService;
 
+    @Transactional
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Users user = userService.findByLogin(username);
@@ -50,24 +53,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         throw new UsernameNotFoundException("Invalid username or password.");
     }
-
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Users user) {
+    @Transactional
+    public Collection<? extends GrantedAuthority> mapRolesToAuthorities(Users user) {
         return rolesService
                 .findByUsers(user)
                 .stream()
                 .map(userRoles -> new SimpleGrantedAuthority(userRoles.getAuthority()))
                 .collect(Collectors.toSet());
     }
-
-
+    @Transactional
     public void save(Users user) {
-        user.setRooms(new HashSet<>(Collections.singleton(roomsService.findByName(MAIN_ROOM))));
-        Roles currentRole = rolesService.findByName("ROLE_USER");
-        Set<Roles> currentList = new HashSet<>();
-        currentList.add(currentRole);
         String password = user.getPassword();
         user.setPassword(passwordEncoder.encode(password));
-        user.setRoles(currentList);
         userService.save(user);
     }
 

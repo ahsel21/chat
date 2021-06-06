@@ -12,4 +12,5 @@ public interface MessagesService {
     Messages editMessages(Messages messages);
     List<Messages> findAll();
     Optional<Messages> findById(Integer id);
+
 }

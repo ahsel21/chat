@@ -39,6 +39,7 @@ public class Users implements UserDetails {
     @Transient
     private String confirmPassword;
 
+    //TODO проверить синтаксис
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "chat_users",
             joinColumns = @JoinColumn(name = "USER_ID"),
