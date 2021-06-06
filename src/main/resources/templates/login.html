@@ -10,20 +10,22 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
+<h2 style="width: 340px; margin: 40px auto">Please sign in.</h2>
 <div id="loginFormDiv" class="screen" layout:fragment="content">
   <div class="login-form" style="width: 340px; margin: 40px auto">
     <form style="align-content: center" th:action="@{/login}" method="post" id="loginForm">
       <div>
         <label for="username">Login</label>
-        <input type="text" id="username" name="username">
+        <input type="text" id="username" name="username" placeholder="login">
       </div>
 
       <div>
         <label for="password">Password</label>
-        <input type="password" id="password" name="password">
+        <input type="password" id="password" name="password" placeholder="password">
       </div>
 
       <button type="submit" id="loginButton">Log in</button>
+      <a href="/registration" style="width: 100px; margin: auto auto auto 195px">Registration</a>
     </form>
 
   </div>
