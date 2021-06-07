@@ -5,20 +5,20 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="1" author="ahsel21">
+    <changeSet id="4" author="ahsel21">
         <sqlFile dbms="postgres"
                  encoding="utf8"
                  relativeToChangelogFile="true"
                  splitStatements="true"
                  stripComments="true"
-                 path="03-create-messages-table.sql"/>
+                 path="03-create-rooms-table.sql"/>
         <rollback>
             <sqlFile dbms="postgres"
                      encoding="utf8"
                      relativeToChangelogFile="true"
                      splitStatements="true"
                      stripComments="true"
-                     path="03-drop-messages-table.sql"/>
+                     path="03-drop-rooms-table.sql"/>
         </rollback>
     </changeSet>
 
