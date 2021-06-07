@@ -28,8 +28,7 @@ public class RoomsController {
 
     @GetMapping("/rooms")
     public String getRooms(Model model) {
-        List<Rooms> rooms = roomsService.findAll();
-        model.addAttribute("rooms", rooms);
+        model.addAttribute("rooms", roomsService.findAll());
         return "rooms-list";
     }
 
@@ -52,8 +51,7 @@ public class RoomsController {
 
     @GetMapping("/rooms/update/{id}")
     public String update(@PathVariable("id") Integer id, Model model) {
-        Optional<Rooms> room = roomsService.findById(id);
-        model.addAttribute("room", room);
+        model.addAttribute("room", roomsService.findById(id));
         return "room-update";
     }
 
@@ -65,10 +63,7 @@ public class RoomsController {
 
     @GetMapping("/room/{room_id}")
     public String getMessagesByRoom(@PathVariable("room_id") Integer room_id, Model model) {
-        //todo убрать логику в слой сервисов!!!!
-        List<Messages> messages = messagesService.findAll();
-        messages.removeIf(mes -> mes.getRooms().getRoom_id() != room_id);
-        model.addAttribute("messages", messages);
+        model.addAttribute("messages", messagesService.findAllByRoom_id(room_id));
         model.addAttribute("room_id", room_id);
         return "message-in-room";
     }

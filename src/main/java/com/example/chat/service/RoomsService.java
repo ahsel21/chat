@@ -13,6 +13,6 @@ public interface RoomsService {
     Rooms editRoom(Rooms rooms);
     List<Rooms> findAll();
 
-
+    List<Rooms> getRoomsByOwnerId(Integer owner_id);
     Optional<Rooms> findById(Integer id);
 }

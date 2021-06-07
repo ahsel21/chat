@@ -46,4 +46,9 @@ public class MessagesServiceImpl implements MessagesService {
         return messagesRepository.findById(id);
     }
 
+    @Override
+    public List<Messages> findAllByRoom_id(Integer room_id) {
+        return messagesRepository.findAllByRoom_id(room_id);
+    }
+
 }

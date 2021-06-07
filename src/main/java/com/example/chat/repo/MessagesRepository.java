@@ -19,8 +19,8 @@ public interface MessagesRepository extends JpaRepository<Messages, Integer> {
 
     List<Messages> findAll();
 
-    @Query( value = "select * from messages", nativeQuery = true)
-    List<Rooms> findAllByRoom_id();
+    @Query(value = "SELECT m FROM Messages m WHERE m.rooms.room_id = ?1")
+    List<Messages> findAllByRoom_id(Integer room_id);
 
     @Override
     void delete(Messages messages);

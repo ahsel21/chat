@@ -5,6 +5,7 @@ import com.example.chat.repo.RoomsRepository;
 import com.example.chat.service.RoomsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,4 +51,10 @@ public class RoomsServiceImpl implements RoomsService {
     public List<Rooms> findAll() {
         return roomsRepository.findAll();
     }
+
+    @Override
+    public List<Rooms> getRoomsByOwnerId(Integer owner_id){
+        return roomsRepository.getRoomsByOwnerId(owner_id);
+    }
+
 }

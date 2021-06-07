@@ -11,10 +11,16 @@ import java.util.List;
 public interface RoomsRepository extends JpaRepository<Rooms, Integer> {
 
     Rooms findByName(String name);
+
     List<Rooms> findAll();
+
     long count();
 
+    @Query(value = "SELECT r FROM Rooms r WHERE r.owner_id.user_id = ?1")
+    List<Rooms> getRoomsByOwnerId(Integer owner_id);
 
+    @Query(value = "SELECT r FROM Rooms r WHERE r.name = ?1")
+    List<Rooms> getRoomsByName(String roomName);
 
 
 }

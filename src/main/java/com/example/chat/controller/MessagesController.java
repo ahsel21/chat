@@ -23,9 +23,10 @@ public class MessagesController {
 
     @GetMapping("/messages")
     public String main(Model model) {
+        //TODO всю логику вынести
         List<Messages> messages = messagesService.findAll();
         model.addAttribute("messages", messages);
-        System.out.println(messages );
+        System.out.println(messagesService.findAllByRoom_id(36));
         return "messages-list";
     }
     @GetMapping("/messages/create")
