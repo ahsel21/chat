@@ -6,14 +6,14 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet id="4" author="ahsel21">
-        <sqlFile dbms="postgres"
+        <sqlFile dbms="postgresql"
                  encoding="utf8"
                  relativeToChangelogFile="true"
                  splitStatements="true"
                  stripComments="true"
                  path="03-create-rooms-table.sql"/>
         <rollback>
-            <sqlFile dbms="postgres"
+            <sqlFile dbms="postgresql"
                      encoding="utf8"
                      relativeToChangelogFile="true"
                      splitStatements="true"
