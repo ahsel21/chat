@@ -1,4 +1,4 @@
 alter table users
     owner to postgres;
 
-drop table users
+drop table users;
