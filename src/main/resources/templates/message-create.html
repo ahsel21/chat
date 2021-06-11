@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Create message</title>
+</head>
+<body>
+<h2>Create message</h2>
+<form action="#" th:action="@{/messages/create}" th:object="${messages}" method="post">
+  <label for="text">Message text</label>
+  <input type="text" th:field="*{text}" id="text" placeholder="text">
+  <label for="user_id">Author id</label>
+  <input type="number" th:field="*{author.user_id}" id="user_id" placeholder="author id">
+  <label for="room_id">Room id</label>
+  <input type="number" th:field="*{rooms.room_id}" id="room_id" placeholder="room id">
+  <input type="submit" value="Create message">
+</form>
+</body>
+</html>

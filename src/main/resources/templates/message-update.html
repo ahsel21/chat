@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8">
+<title>Edit message</title>
+</head>
+<body>
+<h2>Edit message</h2>
+<form action="#" th:action="@{/messages/update}" th:object="${message}" method="post">
+  <label for="message_id">ID</label>
+  <input readonly type="number" th:field="*{message_id}" id="message_id" placeholder="ID">
+  <label for="text">Message text</label>
+  <input type="text" th:field="*{text}" id="text" placeholder="message text">
+  <label for="user_id">Author id</label>
+  <input readonly type="text" th:field="*{author.user_id}" id="user_id" placeholder="author id">
+  <label for="room_id">Room id</label>
+  <input readonly type="text" th:field="*{rooms.room_id}" id="room_id" placeholder="room id">
+
+  <input type="submit" value="Update message">
+</form>
+</body>
+</html>

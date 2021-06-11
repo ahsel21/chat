@@ -11,3 +11,7 @@ public class ChatApplication {
     }
 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/feature/chat-v1
