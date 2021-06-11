@@ -71,16 +71,6 @@ public class Roles implements GrantedAuthority {
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
     private List<Users> users = new ArrayList<>();
 
-//    public Roles(Integer role_id, String name) {
-//        this.role_id = role_id;
-//        this.name = name;
-//    }
-
-
-//    @ManyToMany(mappedBy = "USERS")
-//    private List<User> users=new ArrayList<>();
-
-
     @Override
     public String toString() {
         return "Roles{" +
