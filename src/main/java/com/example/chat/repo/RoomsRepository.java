@@ -22,5 +22,9 @@ public interface RoomsRepository extends JpaRepository<Rooms, Integer> {
     @Query(value = "SELECT r FROM Rooms r WHERE r.name = ?1")
     List<Rooms> getRoomsByName(String roomName);
 
-
+    @Query("select roleRoomUser.room from RoleRoomUser roleRoomUser " +
+            "where roleRoomUser.role.name = :roomRoleName " +
+            "and roleRoomUser.user.login = :username " +
+            "and roleRoomUser.room.deleted = false ")
+    List<Rooms> findAllByUsernameAndRoleName(String username, String roomRoleName);
 }

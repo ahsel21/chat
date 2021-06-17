@@ -70,36 +70,36 @@ public class Roles implements GrantedAuthority {
             joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
     private List<Users> users = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        return "Roles{" +
-                "role_id=" + role_id +
-                ", name='" + name + '\'' +
-                ", send_message=" + send_message +
-                ", recive_message=" + recive_message +
-                ", delete_message=" + delete_message +
-                ", create_rooms=" + create_rooms +
-                ", add_users=" + add_users +
-                ", delete_users=" + delete_users +
-                ", rename_rooms=" + rename_rooms +
-                ", ban_users=" + ban_users +
-                ", set_moderators=" + set_moderators +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Roles roles = (Roles) o;
-        return Objects.equals(role_id, roles.role_id) && Objects.equals(name, roles.name) && Objects.equals(send_message, roles.send_message) && Objects.equals(recive_message, roles.recive_message) && Objects.equals(delete_message, roles.delete_message) && Objects.equals(create_rooms, roles.create_rooms) && Objects.equals(add_users, roles.add_users) && Objects.equals(delete_users, roles.delete_users) && Objects.equals(rename_rooms, roles.rename_rooms) && Objects.equals(ban_users, roles.ban_users) && Objects.equals(set_moderators, roles.set_moderators);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(role_id, name, send_message, recive_message, delete_message, create_rooms, add_users, delete_users, rename_rooms, ban_users, set_moderators);
-    }
+//
+//    @Override
+//    public String toString() {
+//        return "Roles{" +
+//                "role_id=" + role_id +
+//                ", name='" + name + '\'' +
+//                ", send_message=" + send_message +
+//                ", recive_message=" + recive_message +
+//                ", delete_message=" + delete_message +
+//                ", create_rooms=" + create_rooms +
+//                ", add_users=" + add_users +
+//                ", delete_users=" + delete_users +
+//                ", rename_rooms=" + rename_rooms +
+//                ", ban_users=" + ban_users +
+//                ", set_moderators=" + set_moderators +
+//                '}';
+//    }
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Roles roles = (Roles) o;
+//        return Objects.equals(role_id, roles.role_id) && Objects.equals(name, roles.name) && Objects.equals(send_message, roles.send_message) && Objects.equals(recive_message, roles.recive_message) && Objects.equals(delete_message, roles.delete_message) && Objects.equals(create_rooms, roles.create_rooms) && Objects.equals(add_users, roles.add_users) && Objects.equals(delete_users, roles.delete_users) && Objects.equals(rename_rooms, roles.rename_rooms) && Objects.equals(ban_users, roles.ban_users) && Objects.equals(set_moderators, roles.set_moderators);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(role_id, name, send_message, recive_message, delete_message, create_rooms, add_users, delete_users, rename_rooms, ban_users, set_moderators);
+//    }
 
     @Override
     public String getAuthority() {

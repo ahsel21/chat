@@ -12,6 +12,8 @@ public interface RoomsService {
     Rooms findByName(String name);
     Rooms editRoom(Rooms rooms);
     List<Rooms> findAll();
+    List<Rooms> findAllByUsernameAndRoleName(String username, String roomRoleName);
+
 
     List<Rooms> getRoomsByOwnerId(Integer owner_id);
     Optional<Rooms> findById(Integer id);

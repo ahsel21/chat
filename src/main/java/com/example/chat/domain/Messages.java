@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -42,15 +43,10 @@ public class Messages {
     @NotNull
     private Rooms rooms;
 
-
     @NotNull
-    @Column(name = "DATE")
-    private Date date;
+    @Column(name = "created_date_time")
+    private ZonedDateTime date;
 
-
-    public void setDate() {
-        this.date = new Date();
-    }
 
     @Override
     public boolean equals(Object o) {

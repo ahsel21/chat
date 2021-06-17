@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -40,11 +41,22 @@ public class Rooms {
     @JoinColumn(name = "OWNER_ID")
     private Users owner_id;
 
+    @OneToMany(mappedBy = "rooms", cascade = CascadeType.ALL)
+    private List<Messages> messages;
+
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "chat_users",
             joinColumns = @JoinColumn(name = "ROOM_ID"),
             inverseJoinColumns = @JoinColumn(name = "USER_ID"))
     private Set<Users> users = new HashSet<>();
+
+
+    @Column(name = "is_bot", nullable = false)
+    private boolean botRoom;
+
+    @Column(name = "is_deleted", nullable = false)
+    private boolean deleted;
 
 
     @Override
