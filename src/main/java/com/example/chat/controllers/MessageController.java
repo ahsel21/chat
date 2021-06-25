@@ -1,48 +1,26 @@
 package com.example.chat.controllers;
 
 import com.example.chat.dto.MessageDTO;
-import com.example.chat.model.Message;
 import com.example.chat.services.MessageService;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
+
+
+import javax.validation.Valid;
 
 @Controller
+@RequiredArgsConstructor
 public class MessageController {
 
-    @Autowired
-    private MessageService messageService;
+    private final MessageService messageService;
 
-    @Autowired
-    private ModelMapper modelMapper;
-
-    @GetMapping("/")
-    public ModelAndView getMessages() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("messages", messageService.findAll());
-        modelAndView.setViewName("index");
-        return modelAndView;
+    @MessageMapping(value = "/messages")
+    @SendTo("/topic/public")
+    public MessageDTO sendMessage(@Valid MessageDTO messageDTO, @AuthenticationPrincipal Authentication authentication) {
+        return messageService.save(messageDTO, authentication.getName());
     }
-
-    @PostMapping(value = "/messages")
-    public ModelAndView sendMessage(@ModelAttribute("message") MessageDTO messageDTO) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
-        Message message = convertToEntity(messageDTO);
-        messageService.save(message);
-        return modelAndView;
-    }
-
-
-    private Message convertToEntity(MessageDTO messageDTO){
-        Message message = modelMapper.map(messageDTO, Message.class);
-        return message;
-    }
-
-
-
 }

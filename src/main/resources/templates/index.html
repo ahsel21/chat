@@ -4,58 +4,92 @@
       layout:decorate="~{layout/layout}">
 <head>
   <meta charset="UTF-8">
-  <title>Chat</title>
+  <title>Online Chat Simbirsoft</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+  <script type="text/javascript" th:src="@{/js/messagesSocket.js}"></script>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 </head>
 <body>
 <div class="screen" layout:fragment="content">
+
   <main id="content" class="row">
 
-    <div id="chat_block" class="col s7">
-      <div th:if="${!messages.isEmpty()}" class="layer">
-        <div class="row" th:each="msg : ${messages}">
-          <div class="col">
-            <div class="w-100"></div>
-            <div class="col">
-              <p th:text="${msg.getAuthor()}"></p>
+    <div class="col s9">
+      <div class="layer">
+        <div id="chatBlock" style="display: none">
+          <div th:each="msg : ${messages}">
+            <div class="row">
+              <div class="col">
+                <div class="w-100"></div>
+                <div class="col">
+                  <p th:text="${msg.getAuthor()}"></p>
+                </div>
+                <div class="col">
+                                    <span>
+                                     <p style="text-align:left"
+                                        th:text="${#temporals.format(msg.getCreatedDateTime(), 'dd-MM-yyyy HH:mm:ss')}"/>
+                                    </span>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                  <p th:text="${msg.getMessageText()}"></p>
+                </div>
+                <br>
+
+              </div>
             </div>
-            <div class="col">
-                            <span>
-                                <p style="text-align:left"
-                                   th:text="${#temporals.format(msg.getCreatedDateTime(), 'dd-MM-yyyy HH:mm:ss')}"/>
-                            </span>
+          </div>
+          <div id="response"></div>
+        </div>
+      </div>
+      <div>
+        <label id="labelUserName" for="userName">Enter your nickname</label>
+        <input type="text" id="userName">
+        <strong><p id="nicknameError"></p></strong>
+        <button id="connect" class="btn waves-effect waves-light right blue darken-4 "
+                onclick="connect(document.getElementById('userName').value)">Join room
+        </button>
+        <button id="disconnect" class="btn waves-effect waves-light right blue darken-4 " disabled="disabled"
+                onclick="disconnect()">Disconnect
+        </button>
+      </div>
+
+      <!--        Message form-->
+      <div id="messageForm" style="display: none">
+        <div th:action="@{/messages}" method="post" id="sendMessageForm">
+          <div class="row">
+            <div class="input-field col s12">
+              <div id="conversationDiv">
+                <label for="messageText">Enter message</label>
+                <input type="text" id="messageText" th:name="messageText" class="materialize-textarea">
+                <strong><p id="messageError"></p></strong>
+                <button id="sendMessage" onclick="sendMessage()"
+                        class="btn waves-effect waves-light right blue darken-4 ">
+                  Send
+                </button>
+              </div>
+
             </div>
-            <div class="w-100"></div>
-            <div class="col">
-              <p th:text="${msg.getMessageText()}"></p>
-            </div>
-            <br>
           </div>
         </div>
       </div>
 
-      <!--        Message form-->
-      <form th:action="@{/messages}" method="post" id="sendMessage">
-        <div class="row">
-          <div class="input-field col s12">
-            <label for="messageText">Enter message</label>
-            <input type="text" id="messageText" th:name="messageText" class="materialize-textarea">
-            <button class="btn waves-effect waves-light right teal green " type="submit">
-              Send
-            </button>
-          </div>
-        </div>
-      </form>
     </div>
+
+
     <!--Users list-->
     <h4 class="center-align">Users</h4>
     <div id="broadcast_block " class="col s3">
       <div class="row">
         <div class="col layer" style="height: 320px">
-          <!--                    Users list-->
+          <!--Users -->
         </div>
       </div>
     </div>
   </main>
+
+
 </div>
 </body>
 </html>
