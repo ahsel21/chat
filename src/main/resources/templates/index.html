@@ -3,94 +3,59 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Chat</title>
+  <meta charset="UTF-8">
+  <title>Chat</title>
 </head>
 <body>
 <div class="screen" layout:fragment="content">
+  <main id="content" class="row">
 
-    <main id="content" class="row">
-
-        <br/>
-        <div class="col s8">
-
-            <div class="row">
-                <div class="col s12">
-                    <ul class="tabs">
-
-                        <div th:each="room: ${rooms}">
-                            <li class="tab col">
-                                <a th:id="'r' + ${room.getRoom_id()}" th:href="'#' + ${room.getRoom_id()}"
-                                   th:text="${room.getName()}"></a>
-                            </li>
-                        </div>
-                    </ul>
-                </div>
+    <div id="chat_block" class="col s7">
+      <div th:if="${!messages.isEmpty()}" class="layer">
+        <div class="row" th:each="msg : ${messages}">
+          <div class="col">
+            <div class="w-100"></div>
+            <div class="col">
+              <p th:text="${msg.getAuthor()}"></p>
             </div>
-            <div th:each="room: ${rooms}">
-                <div th:id="${room.getRoom_id()}" class="layer">
-                    <div th:if="${!room.getMessages().isEmpty()}">
-                        <div th:each="msg : ${room.getMessages()}">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="w-100"></div>
-                                    <div class="col">
-                                        <p th:text="${msg.getAuthor().getUsername()}"></p>
-                                    </div>
-                                    <div class="col">
-                                    <span>
-                                     <p style="text-align:left"
-                                        th:text="${#temporals.format(msg.getDate().toLocalDateTime().atZone(zonedid), 'yyyy-MM-dd HH:mm:ss')}"></p>
-                                    </span>
-                                    </div>
-                                    <div class="w-100"></div>
-                                    <div class="col">
-                                        <p th:text="${msg.getText()}"></p>
-                                    </div>
-                                    <br>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div th:id="'response' + ${room.getRoom_id()}"></div>
-                </div>
+            <div class="col">
+                            <span>
+                                <p style="text-align:left"
+                                   th:text="${#temporals.format(msg.getCreatedDateTime(), 'dd-MM-yyyy HH:mm:ss')}"/>
+                            </span>
             </div>
-
-            <!--        Message form-->
-            <div id="messageForm">
-                <div th:action="@{/messages}" method="post" id="sendMessageForm">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <div id="conversationDiv">
-                                <label for="messageText">Enter message</label>
-                                <input type="text" id="messageText" th:name="messageText"
-                                       class="materialize-textarea">
-                                <strong><p id="messageError"></p></strong>
-                                <button id="sendMessage" onclick="sendMessage()"
-                                        class="btn waves-effect waves-light right blue darken-4 ">
-                                    Send
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="w-100"></div>
+            <div class="col">
+              <p th:text="${msg.getMessageText()}"></p>
             </div>
+            <br>
+          </div>
         </div>
+      </div>
 
-        <div id="broadcast_block " class="col s2">
-            <div class="row">
-                <div class="col layer">
-                    <!--Users -->
-                    <ul th:each="user: ${users}" class="collection">
-                        <li class="collection-item" th:text="${user.getUsername()}"></li>
-                    </ul>
-                </div>
-            </div>
+      <!--        Message form-->
+      <form th:action="@{/messages}" method="post" id="sendMessage">
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="messageText">Enter message</label>
+            <input type="text" id="messageText" th:name="messageText" class="materialize-textarea">
+            <button class="btn waves-effect waves-light right teal green " type="submit">
+              Send
+            </button>
+          </div>
         </div>
-    </main>
-
+      </form>
+    </div>
+    <!--Users list-->
+    <h4 class="center-align">Users</h4>
+    <div id="broadcast_block " class="col s3">
+      <div class="row">
+        <div class="col layer" style="height: 320px">
+          <!--                    Users list-->
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
-
 </body>
 </html>
