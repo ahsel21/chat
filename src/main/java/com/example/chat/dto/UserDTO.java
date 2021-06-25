@@ -4,21 +4,19 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.ZonedDateTime;
+import java.util.List;
 
 @Getter
 @Setter
-public class MessageDTO {
+public class UserDTO {
 
     private Long id;
 
-    private UserDTO author;
+    private String username;
 
     @JsonBackReference
-    private RoomDTO room;
+    private String password;
 
-    private String messageText;
-
-    private ZonedDateTime createdDateTime;
+    private List<RoomRoleDTO> roomRoles;
 
 }
