@@ -1,13 +1,14 @@
 package com.example.chat.services;
 
-import com.example.chat.model.Message;
+import com.example.chat.dto.MessageDTO;
+
 import java.util.List;
 
 
 public interface MessageService {
 
-    Message save(Message message);
+    MessageDTO save(MessageDTO messageDTO, String username);
 
-    List<Message> findAll();
+    List<MessageDTO> findAll();
 
 }
