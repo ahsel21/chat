@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "message")
@@ -21,14 +21,19 @@ public class Message {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "author", nullable = false)
-    private String author;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "ID")
+    private User author;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "room_id", referencedColumnName = "ID")
+    private Room room;
 
     @Column(name = "message_text", nullable = false)
     private String messageText;
 
     @Column(nullable = false, name = "created_date_time")
-    private LocalDateTime createdDateTime;
+    private ZonedDateTime createdDateTime;
 
 }
 
