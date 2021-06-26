@@ -1,4 +1,4 @@
-package com.example.chat.controllers;
+package com.example.chat.controller;
 
 import com.example.chat.dto.MessageDTO;
 import com.example.chat.services.MessageService;
@@ -8,7 +8,6 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-
 
 import javax.validation.Valid;
 
@@ -23,4 +22,5 @@ public class MessageController {
     public MessageDTO sendMessage(@Valid MessageDTO messageDTO, @AuthenticationPrincipal Authentication authentication) {
         return messageService.save(messageDTO, authentication.getName());
     }
+
 }
