@@ -1,6 +1,6 @@
 package com.example.chat.services.impl;
 
-
+import com.example.chat.constants.RoleConstant;
 import com.example.chat.dto.RoomDTO;
 import com.example.chat.filter.specification.UserSpecification;
 import com.example.chat.model.RoleRoomUser;
@@ -61,9 +61,9 @@ public class RoomServiceImpl implements RoomService {
 
         List<RoleRoomUser> roleRoomUsers = new ArrayList<>();
         User user = modelMapper.map(userService.findUserByUsername(UserSpecification.findByUsername(username)), User.class);
-        RoomRole userRole = modelMapper.map(roomRoleService.findByName("ROLE_USER"), RoomRole.class);
-        RoomRole moderRole = modelMapper.map(roomRoleService.findByName("ROLE_MODERATOR"), RoomRole.class);
-        RoomRole adminRole = modelMapper.map(roomRoleService.findByName("ROLE_ADMIN"), RoomRole.class);
+        RoomRole userRole = modelMapper.map(roomRoleService.findByName(RoleConstant.ROLE_USER), RoomRole.class);
+        RoomRole moderRole = modelMapper.map(roomRoleService.findByName(RoleConstant.ROLE_MODERATOR), RoomRole.class);
+        RoomRole adminRole = modelMapper.map(roomRoleService.findByName(RoleConstant.ROLE_ADMIN), RoomRole.class);
 
         addRoleRoomUserToList(room, user, userRole, roleRoomUsers);
         addRoleRoomUserToList(room, user, moderRole, roleRoomUsers);

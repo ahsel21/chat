@@ -5,7 +5,6 @@ import com.example.chat.model.Room;
 
 import java.util.List;
 
-
 public interface RoomService {
 
     List<RoomDTO> findAll();

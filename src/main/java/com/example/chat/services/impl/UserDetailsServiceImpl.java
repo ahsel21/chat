@@ -1,7 +1,7 @@
 package com.example.chat.services.impl;
 
-import com.example.chat.filter.specification.UserSpecification;
 import com.example.chat.model.User;
+import com.example.chat.repositories.UserRepository;
 import com.example.chat.services.RoleRoomUserService;
 import com.example.chat.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +17,12 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-
 @Service
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
     private final ModelMapper modelMapper;
 
@@ -30,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = modelMapper.map(userService.findUserByUsername(UserSpecification.findByUsername(username)), User.class);
+        User user = modelMapper.map(userService.findUserByUsername(com.example.chat.filter.specification.UserSpecification.findByUsername(username)), User.class);
 
         if (Objects.nonNull(user)) {
             return new org.springframework.security.core.userdetails.User(user.getUsername(),
@@ -48,4 +48,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .collect(Collectors.toSet());
     }
 
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }

@@ -15,11 +15,6 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author Koloyartsev V.A.
- * <p>
- * User service implementation.
- */
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {

@@ -22,7 +22,7 @@ public class RoomRoleServiceImpl implements RoomRoleService {
     @Override
     public RoomRoleDTO findByName(String name) {
         return convertToDTO(roomRoleRepository.findOne(RoomRoleSpecification.findByName(name))
-                .orElseThrow(() -> new EntityNotFoundException("No room found with name ")));
+                .orElseThrow(() -> new EntityNotFoundException("No found ")));
     }
 
 

@@ -12,11 +12,9 @@ import com.example.chat.services.RoomService;
 import com.example.chat.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,5 +58,6 @@ public class MessageServiceImpl implements MessageService {
     private MessageDTO convertToDTO(Message message) {
         return modelMapper.map(message, MessageDTO.class);
     }
+
 
 }
