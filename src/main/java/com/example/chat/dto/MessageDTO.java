@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import java.time.ZonedDateTime;
 
 @Getter
@@ -17,6 +18,7 @@ public class MessageDTO {
     @JsonBackReference
     private RoomDTO room;
 
+    @NotBlank(message = "Write the text")
     private String messageText;
 
     private ZonedDateTime createdDateTime;

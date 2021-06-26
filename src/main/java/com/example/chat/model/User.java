@@ -12,12 +12,10 @@ import java.util.List;
 @Setter
 public class User {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
-
 
     @Column(nullable = false, unique = true)
     private String username;

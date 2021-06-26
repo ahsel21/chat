@@ -7,7 +7,6 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import java.util.List;
 
-
 @Entity
 @Table(name = "room_role")
 @Getter
@@ -21,7 +20,6 @@ public class RoomRole implements GrantedAuthority {
 
     @Column(name = "name", nullable = false)
     private String name;
-
 
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private List<RoleRoomUser> roleRoomUsers;

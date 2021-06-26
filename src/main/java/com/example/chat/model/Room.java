@@ -12,7 +12,6 @@ import java.util.List;
 @Setter
 public class Room {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
@@ -29,7 +28,6 @@ public class Room {
 
     @Column(name = "is_private", nullable = false)
     private boolean privateRoom;
-
 
     @Column(name = "is_bot", nullable = false)
     private boolean botRoom;
