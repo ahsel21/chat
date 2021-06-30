@@ -24,10 +24,6 @@ public class UserController {
     public void banUser() {
     }
 
-    @PutMapping("/users/{username}/pardon")
-    public void pardonUser() {
-    }
-
     @PostMapping("/users/{username}/moder")
     public void addModerUser() {
     }
