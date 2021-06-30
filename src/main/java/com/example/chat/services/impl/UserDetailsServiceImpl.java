@@ -1,20 +1,26 @@
 package com.example.chat.services.impl;
 
+import com.example.chat.model.Message;
+import com.example.chat.model.RoleRoomUser;
 import com.example.chat.model.User;
+import com.example.chat.repositories.RoomRepository;
+import com.example.chat.repositories.RoomRoleRepository;
 import com.example.chat.repositories.UserRepository;
 import com.example.chat.services.RoleRoomUserService;
 import com.example.chat.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +29,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserService userService;
     private final UserRepository userRepository;
+    private final RoomRepository roomRepository;
+    private final RoomRoleRepository roomRoleRepository;
+
+    @Lazy
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     private final ModelMapper modelMapper;
 
@@ -49,6 +61,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public void save(User user) {
+        List<Message> messageList = new ArrayList<>();
+        Message message = new Message();
+        message.setMessageText("Hello, I am " + user.getUsername());
+        message.setAuthor(user);
+        message.setRoom(roomRepository.getOne(1L));
+        messageList.add(message);
+        user.setMessages(messageList);
+        user.setEmail(user.getEmail() + "@gmail.com");
+        RoleRoomUser roleRoomUser = new RoleRoomUser();
+        roleRoomUser.setRoom(roomRepository.getOne(1L));
+        roleRoomUser.setUser(user);
+        roleRoomUser.setRole(roomRoleRepository.getOne(1L));
+        List<RoleRoomUser> roleRoomUserList = new ArrayList<>();
+        roleRoomUserList.add(roleRoomUser);
+        user.setRoleRoomUsers(roleRoomUserList);
+        String password = user.getPassword();
+        user.setPassword(passwordEncoder.encode(password));
         userRepository.save(user);
     }
 }
